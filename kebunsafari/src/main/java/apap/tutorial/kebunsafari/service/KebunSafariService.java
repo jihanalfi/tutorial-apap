@@ -16,4 +16,7 @@ public interface KebunSafariService {
     // Method untuk mendapatkan data sebuah KebunSafari berdasarkan ID yang dimiliki
     KebunSafariModel getKebunSafariByIdKebunSafari(String idKebunSafari);
 
+    // Method untuk mendapatkan data KebunSafari berdasarkan nomor Telepon
+    void deleteKebunSafariByNoTelpon(String noTelepon);
+
 }

@@ -13,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-public class KebunSafariController implements ErrorController {
+public class KebunSafariController {
     @Autowired
     private KebunSafariService kebunSafariService;
 
-    @RequestMapping("/error")
-    public String handleError() {
-        return "error";
-    }
+//    @RequestMapping("/error")
+//    public String handleError() {
+//        return "error";
+//    }
 
     @RequestMapping("/kebun-safari/add")
     public String addKebunSafari(
@@ -124,5 +124,15 @@ public class KebunSafariController implements ErrorController {
         return "delete-kebun-safari";
     }
 
+    @RequestMapping(value = "/kebun-safari/deleteByTelepon")
+    public String deteleKebunSafariByTelepon(
+            @RequestParam(value = "noTelepon", required = true) String noTelepon,
+            Model model
+    ) {
+
+        kebunSafariService.deleteKebunSafariByNoTelpon(noTelepon);
+
+        return "delete-kebun-safari-by-telepon";
+    }
 }
 

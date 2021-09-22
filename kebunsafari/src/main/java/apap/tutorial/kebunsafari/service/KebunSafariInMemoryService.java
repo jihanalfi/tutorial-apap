@@ -41,4 +41,21 @@ public class KebunSafariInMemoryService implements KebunSafariService{
         }
         return null;
     }
+
+    @Override
+    public void deleteKebunSafariByNoTelpon(String noTelepon){
+        List<KebunSafariModel> listKebunSafariNomor = new ArrayList<>();
+        for (KebunSafariModel kebunSafari : listKebunSafari){
+            if (kebunSafari.getNoTelepon().equals(noTelepon)) {
+                listKebunSafariNomor.add(kebunSafari);
+            }
+        }
+        if (!listKebunSafariNomor.isEmpty()){
+            for (KebunSafariModel kebunSafari : listKebunSafariNomor){
+                deleteKebunSafari(kebunSafari);
+            }
+        }
+
+    }
+
 }
