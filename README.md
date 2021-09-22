@@ -1,7 +1,27 @@
 # Tutorial APAP
 ## Authors
 * **Jihan Alfiyyah Munajat** - *1906298935* - *A*
-
+---
+1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model
+(@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
+> @AllArgsConstructor, @NoArgsConstructor, @Getter, @Setter merupakan anotasi dari project lombok. @AllArgsConstructor digunakan untuk
+> secara otomatis mengenerate constructor dengan 1 parameter, sedangnakn @NoArgsConstructor tanpa parameter. @Setter digunakan untuk secara otomatis 
+> mengenerate setter dalam class dan @getter mengenerate getter dalam class. @Entity digunakan untuk mengidentifikasi class tersebut menggunakan 
+> data dari tabel database dan @Table akan menyesuaikan dengan nama tabel di database.
+2. Pada class CabangDB, terdapat method findByNoCabang, apakah kegunaan dari method
+   tersebut?
+>Method findByNoCabang digunakan untuk mengkustomisasi fungsionalitas atau menambahkan method custom ke database
+3. Jelaskan perbedaan kegunaan dari anotasi @JoinTable dan @JoinColumn
+>@JoinTable memiliki availability untuk menggabungkan tabel yang tidak akan menggabungkan kolom jika nama kolom tersebut sama
+> @JoinColumn memerlukan primary key dan foreign key yang akan digabungkan menjadi 1 kolom.
+4. Pada class PegawaiModel, digunakan anotasi @JoinColumn pada atribut cabang, apa
+   kegunaan dari name, referencedColumnName, dan nullable dalam anotasi tersebut? dan apa
+   perbedaan nullable dan penggunaan anotasi @NotNull
+> Name merupakan kolom sebagai foreign key yang ada di tabel pegawai, referencedColumnName merujuk ke primary key di reference tabel yakni 
+> tabel cabang. Nullable dalam anotasi mendefinisikan sebagai null constraint dalam table dari JPA repository, sedangkan @NotNull running BeanValidation
+> untuk memvalidasi apakah attribute null atau tidak
+5. Jelaskan kegunaan FetchType.LAZY, CascadeType.ALL, dan FetchType.EAGER
+> FetchType.LAZY me-load database sesuai permintaan, sedangkan FetchType.EAGER akan selalu meload database setiap ada pemanggilan data. 
 ---
 ## Tutorial 2
 ### What I have learned today
