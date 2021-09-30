@@ -2,6 +2,18 @@
 ## Authors
 * **Jihan Alfiyyah Munajat** - *1906298935* - *A*
 ---
+## Tutorial 4 
+### What I have learned today
+>Lebih mengerti penerapan database, khususnya relasi many to many yang ditunjukkan antara Menu dan Cabang pada tutorial ini.
+1. Jelaskan perbedaan th:include dan th:replace! 
+> th:include memasukkan fragment ke dalam tag pada html yang dituju, sedangkan th:replace mengganti tag tersebut dengan fragment.
+2. Jelaskan apa fungsi dari th:object! 
+> th:object berguna untuk mempassing object dari html ke controller. Pada tutorial ini, th:object=’${cabang}’ pada form add cabang, menandakan bahwa seluruh data yang diterima dari form tersebut terikat pada object cabang.
+3. Jelaskan perbedaan dari * dan $ pada saat penggunaan th:object! Kapan harus dipakai?
+> dalam penggunaan th:object, (*) bisa mengakses langsung attribute dari model tersebut karna terikat dengan objectnya. Sebagai contoh, th:object=’${cabang}’ yang dipassing adalah modelnya, dan untuk mengikat/mengakses noCabang, kita bisa langsung memanggil th:object=’*{noCabang}’ yang sudah terdefinisi ke model cabang yang sesuai.
+
+---
+## Tutorial 3
 1. Tolong jelaskan secara singkat apa kegunaan dari anotasi-anotasi yang ada pada model
 (@AllArgsConstructor, @NoArgsConstructor, @Setter, @Getter, @Entity, @Table)
 > @AllArgsConstructor, @NoArgsConstructor, @Getter, @Setter merupakan anotasi dari project lombok. @AllArgsConstructor digunakan untuk
