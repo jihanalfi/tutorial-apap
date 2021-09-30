@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Fetch;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -21,8 +20,9 @@ import java.util.List;
 @Entity
 @Table(name = "cabang")
 public class CabangModel implements Serializable {
+
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noCabang;
 
     @NotNull
@@ -32,7 +32,7 @@ public class CabangModel implements Serializable {
 
     @NotNull
     @Size(max=30)
-    @Column(name=" alamat_cabang", nullable = false)
+    @Column(name="alamat_cabang", nullable = false)
     private String alamatCabang;
 
     @NotNull
@@ -50,16 +50,16 @@ public class CabangModel implements Serializable {
     @DateTimeFormat(pattern = "HH:mm")
     private LocalTime waktuTutup;
 
-
-    // Relasi dengan PegawaiModel
-    @OneToMany (mappedBy = "cabang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    Relasi dengan PegawaiModel
+    @OneToMany(mappedBy = "cabang", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<PegawaiModel> listPegawai;
 
-    // Relasi dengan MenuModel
+//    Relasi dengan MenuModel
     @ManyToMany
     @JoinTable(
             name = "cabang_menu",
             joinColumns = @JoinColumn(name = "no_cabang"),
-            inverseJoinColumns = @JoinColumn(name= "no_menu"))
+            inverseJoinColumns = @JoinColumn(name = "no_menu"))
     List<MenuModel> listMenu;
 }
+

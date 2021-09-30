@@ -1,46 +1,120 @@
 <!DOCTYPE html>
-      <html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 
-      <head>
-      <title>Emsidi</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+<head>
+    <title>Emsidi</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+    <object th:include="fragments/fragment :: js" th:remove="tag"></object>
 </head>
 
 <body>
-<div class="container">
-  <div class="card m-4 p-4">
-    <div class="card-body">
-      <div class="justify-content-center">
-        <h2>Detail Cabang</h2>
-        <br>
-        <p th:text="'Nomor Cabang : ' + ${cabang.noCabang}"></p>
-        <p th:text="'Nama Cabang : ' + ${cabang.namaCabang}"></p>
-        <p th:text="'Alamat Cabang : ' + ${cabang.alamatCabang}"></p>
-        <p th:text="'Nomor Telepon Cabang : ' + ${cabang.noTeleponCabang}"></p>
-        <p th:text="'Waktu Buka : ' + ${cabang.waktuBuka}"></p>
-        <p th:text="'Waktu Tutup : ' + ${cabang.waktuTutup}"></p>
-        <div class="col">
-          <h6>Pegawai : </h6>
-          <div th:each="pegawai : ${listPegawai}">
-            <p th:text="'Nama : ' + ${pegawai.namaPegawai}"></p>
-            <p th:if="${pegawai.jenisKelamin == 0}">Jenis Kelamin : Perempuan</p>
-            <p th:if="${pegawai.jenisKelamin == 1}">Jenis Kelamin : Laki-laki</p>
-            <div th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup))}">
-              <a class="btn btn-primary" th:href="@{/pegawai/update/} + ${pegawai.noPegawai}" th:object="${pegawai}">Update</a>
-              <a class="btn btn-primary" th:href="@{/pegawai/delete/} + ${pegawai.noPegawai}" th:object="${pegawai}">Delete</a>
-            </div>
-            <hr>
-          </div>
-        </div>
-        <br>
-        <a class="btn btn-primary" th:href="@{/pegawai/add/} + ${cabang.noCabang}">Tambah Pegawai</a>
-      </div>
-    </div>
-  </div>
-  <a class="btn btn-primary" href="/cabang/viewall">Kembali</a>
-</div>
+<nav th:replace="fragments/fragment :: navbar('Cabang')"></nav>
 
+<div class="container">
+    <div class="card m-4 p-4">
+        <div class="card-body">
+            <div class="justify-content-center">
+                <h2>Detail Cabang</h2>
+                <br>
+                <p th:text="'Nomor Cabang : ' + ${cabang.noCabang}"></p>
+                <p th:text="'Nama Cabang : ' + ${cabang.namaCabang}"></p>
+                <p th:text="'Alamat Cabang : ' + ${cabang.alamatCabang}"></p>
+                <p th:text="'Nomor Telepon Cabang : ' + ${cabang.noTeleponCabang}"></p>
+                <p th:text="'Waktu Buka : ' + ${cabang.waktuBuka}"></p>
+                <p th:text="'Waktu Tutup : ' + ${cabang.waktuTutup}"></p>
+
+                <br>
+
+                <div th:if="*{listPegawai.size() != 0}">
+                    <form th:action="@{/pegawai/delete}" th:object="${cabang}" method="POST">
+                        <input type="hidden" th:field="*{noCabang}"/>
+                        <input type="hidden" th:field="*{waktuBuka}"/>
+                        <input type="hidden" th:field="*{waktuTutup}"/>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>No Pegawai</th>
+                                <th>Nama</th>
+                                <th>Jenis Kelamin</th>
+                                <th></th>
+                                <th th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup))}">Hapus</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="pegawai, iterationStatus : ${listPegawai}"
+                                th:style="${iterationStatus.even} ? 'font-weight:bold;'">
+                                <td th:text="${iterationStatus.count}"></td>
+                                <td th:text="${pegawai.noPegawai}"></td>
+                                <td th:text="${pegawai.namaPegawai}"></td>
+                                <td th:if="${pegawai.jenisKelamin} == 0">Perempuan</td>
+                                <td th:if="${pegawai.jenisKelamin} == 1">Laki-laki</td>
+                                <td>
+                                    <a th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup))}"
+                                       class="btn btn-primary" th:href="@{/pegawai/update/} + ${pegawai.noPegawai}" th:object="${pegawai}">Update</a>
+                                </td>
+                                <td th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup))}">
+                                    <input class="form-check-input" type="checkbox"
+                                           th:field="*{listPegawai}" th:value="${pegawai.noPegawai}"
+                                           id="flexCheckDefault">
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                        <input th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup))}"
+                               type="submit" value="Delete yang dipilih" class="btn btn-danger">
+
+                    </form>
+                </div>
+
+                <div th:unless="*{listPegawai.size != 0}">
+                    <br>
+                    <h2 th:text="'Tidak ada pegawai'"></h2>
+                </div>
+
+                <div th:if="${listMenu.size != 0}">
+                    <br>
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>No Menu</td>
+                            <td>Nama</td>
+                            <td>Deskripsi</td>
+                            <td>Ketersediaan</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="menu, iStatus : ${listMenu}">
+                            <td th:text="${iStatus.count}" th:style="'font-weight:bold;'"></td>
+                            <td th:text="${menu.noMenu}"></td>
+                            <td th:text="${menu.namaMenu}"></td>
+                            <td th:text="${menu.deskripsiMenu}"></td>
+                            <td th:if="${menu.isAvailable} == false">AVAILABLE</td>
+                            <td th:if="${menu.isAvailable} == true">OUT OF STOCK</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div th:unless="${listMenu.size != 0}">
+                    <br>
+                    <h2 th:text="'Belum ada menu yang tersedia'"></h2>
+                <br>
+            </div>
+        </div>
+        </div>
+    </div>
+    <a class="btn btn-primary" th:href="@{/pegawai/add/} + ${cabang.noCabang}">Tambah Pegawai</a>
+    <a class="btn btn-primary"
+       th:if="${!(localTime.isAfter(cabang.waktuBuka) && localTime.isBefore(cabang.waktuTutup)) && (cabang.listPegawai.size==0)}"
+       th:href="@{/cabang/delete/} + ${cabang.noCabang}">Delete Cabang</a>
+    <a class="btn btn-primary" href="/cabang/viewall">Kembali</a>
+
+</div>
 </body>
 
 </html>

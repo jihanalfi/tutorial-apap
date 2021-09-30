@@ -10,30 +10,34 @@
 </head>
 
 <body>
-<nav th:replace="fragments/fragment :: navbar('')"></nav>
+<nav th:replace="fragments/fragment :: navbar('Menu')"></nav>
 
 <div class="container">
     <div class="card m-4 p-4">
         <div class="card-body">
             <div class="justify-content-center">
-                <h2>Tambah Pegawai</h2>
+                <h2>Tambah Menu</h2>
                 <br>
-                <form th:action="@{/pegawai/add}" th:object="${pegawai}" method="POST">
-                    <input type="hidden" th:field="*{cabang}" />
+                <form th:action="@{/menu/add}" th:object="${menu}" method="POST">
 
-                    Nama Pegawai : <br>
-                    <input required class="form-control" type="text" name="namaPegawai" />
+                    Nama Menu : <br>
+                    <input required class="form-control" type="text" name="namaMenu" />
                     <br><br>
 
-                    Jenis Kelamin : <br>
-                    <select name="jenisKelamin">
-                        <option value="0">Perempuan</option>
-                        <option value="1">Laki-laki</option>
+                    Deskripsi Menu : <br>
+                    <input required class="form-control" type="text" name="deskripsiMenu" />
+                    <br><br>
+
+                    Sedang Tersedia : <br>
+                    <select name="isAvailable" th:field="*{isAvailable}"
+                            class="form-control">
+                        <option th:value="0" th:text="YA"></option>
+                        <option th:value="1" th:text="TIDAK"></option>
                     </select>
                     <br><br>
 
                     <button class="btn btn-primary" type="submit">Submit</button>
-                    <a class="btn btn-primary" th:href="@{/cabang/view(noCabang=${noCabang})}">Cancel</a>
+                    <a class="btn btn-primary" href="/">Home</a>
                 </form>
             </div>
         </div>

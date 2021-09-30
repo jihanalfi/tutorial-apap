@@ -4,21 +4,21 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
+@AllArgsConstructor
+@NoArgsConstructor
 @Setter
 @Getter
 @Entity
-@AllArgsConstructor
-@NoArgsConstructor
-@Table(name="pegawai")
-
+@Table(name = "pegawai")
 public class PegawaiModel implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,5 +38,4 @@ public class PegawaiModel implements Serializable {
     @JoinColumn(name = "noCabang", referencedColumnName = "noCabang", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
     private CabangModel cabang;
-
 }
