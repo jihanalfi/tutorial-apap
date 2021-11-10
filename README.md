@@ -2,6 +2,22 @@
 ## Authors
 * **Jihan Alfiyyah Munajat** - *1906298935* - *A*
 ---
+## Tutorial 5
+### What I have learned today
+> Mengetahui bagaimana penggunaan API dalam webservice, tapi masih agak bingung karna banyak yang harus di explore seperti syntax-syntax dari springboot yang baru digunakan.
+1. Apa itu Postman? Apa kegunaannya?
+> Postman merupaka **API Client** yang dapat digunakan untuk create, share, test, dan mendokumentasikan API yang digunakan dalam suatu web.
+> Postman bekerja di sisi backend dan dapat membuat request dan response yang sesuai
+2. Jelaskan fungsi dari anotasi @JsonIgnoreProperties dan @JsonProperty.
+> Anotasi @JsonProperty digunakan untuk mapping nama dari property menggunakan JSON keys dengan serialization dan deserialization, 
+> sedangkan @JsonIgnoreProperties digunakan dari level class untuk menandakan property atau list dari properti yang diabaikan.
+3. Apa kegunaan atribut WebClient?
+>Web client merupakan interface sebagai main entry point dari suatu web request. WebClient juga dapat digunakan sebagai pengatur request dan response dari URL.
+4. Apa itu ResponseEntity dan BindingResult? Apa kegunaannya?
+>ResponseEntity merupakan objek representasi dari keseluruhan HTTP response, termasuk headers, body, dan status code.
+> Sedangkan, BindingResult merupakan general interface yang digunakan sebagai ekstensi dari error, menyetujui suatu Validator untuk diterapkan, dan menambah binding specific analysis dan model building
+
+---
 ## Tutorial 4 
 ### What I have learned today
 >Lebih mengerti penerapan database, khususnya relasi many to many yang ditunjukkan antara Menu dan Cabang pada tutorial ini.
