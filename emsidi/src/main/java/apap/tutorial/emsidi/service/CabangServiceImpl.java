@@ -1,10 +1,8 @@
 package apap.tutorial.emsidi.service;
 
 import apap.tutorial.emsidi.model.CabangModel;
-import apap.tutorial.emsidi.model.PegawaiModel;
 import apap.tutorial.emsidi.repository.CabangDb;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -13,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class CabangServiceImpl implements CabangService{
+public class CabangServiceImpl implements CabangService {
 
     @Autowired
     CabangDb cabangDb;
@@ -26,7 +24,6 @@ public class CabangServiceImpl implements CabangService{
     @Override
     public void updateCabang(CabangModel cabang) {
         cabangDb.save(cabang);
-
     }
 
     @Override
@@ -35,26 +32,22 @@ public class CabangServiceImpl implements CabangService{
     }
 
     @Override
-    public List<CabangModel> getCabangSortedList() {
-        return cabangDb.findAll(Sort.by(Sort.Direction.ASC, "namaCabang" ));
+    public List<CabangModel> getCabangListSorted() {
+        return cabangDb.findAllByOrderByNamaCabang();
     }
 
     @Override
     public CabangModel getCabangByNoCabang(Long noCabang) {
-        Optional<CabangModel> cabang= cabangDb.findByNoCabang(noCabang);
-        if(cabang.isPresent()){
+        Optional<CabangModel> cabang = cabangDb.findByNoCabang(noCabang);
+        if (cabang.isPresent()) {
             return cabang.get();
         }
         return null;
     }
 
     @Override
-    public boolean deleteCabang(CabangModel cabang){
-        List<PegawaiModel> listPegawai = cabang.getListPegawai();
-        if (listPegawai.isEmpty()){
-            cabangDb.delete(cabang);
-            return true;
-        }
-        return false;
+    public void removeCabang(CabangModel cabang) {
+        cabangDb.delete(cabang);
     }
+
 }

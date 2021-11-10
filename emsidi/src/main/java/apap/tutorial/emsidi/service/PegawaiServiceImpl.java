@@ -11,30 +11,28 @@ import java.util.Optional;
 @Service
 @Transactional
 public class PegawaiServiceImpl implements PegawaiService {
+
     @Autowired
     PegawaiDb pegawaiDb;
 
     @Override
-    public void addPegawai(PegawaiModel pegawai){
+    public void addPegawai(PegawaiModel pegawai) {
         pegawaiDb.save(pegawai);
     }
 
     @Override
-    public void updatePegawai(PegawaiModel pegawai){
+    public PegawaiModel getPegawaiByNoPegawai(Long noPegawai) {
+        Optional<PegawaiModel> penjaga = pegawaiDb.findByNoPegawai(noPegawai);
+        return penjaga.orElse(null);
+    }
+
+    @Override
+    public void updatePegawai(PegawaiModel pegawai) {
         pegawaiDb.save(pegawai);
     }
 
     @Override
-    public void deletePegawai(Long id){
-        pegawaiDb.deleteById(id);
-    }
-
-    @Override
-    public PegawaiModel getPegawaiByNoPegawai(Long noPegawai){
-        Optional<PegawaiModel> pegawai = pegawaiDb.findByNoPegawai(noPegawai);
-        if (pegawai.isPresent()){
-            return pegawai.get();
-        }
-        return null;
+    public void removePegawai(PegawaiModel pegawai) {
+        pegawaiDb.delete(pegawai);
     }
 }

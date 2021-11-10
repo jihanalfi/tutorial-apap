@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name = "menu")
 public class MenuModel implements Serializable {
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long noMenu;
 
     @NotNull
@@ -29,7 +29,12 @@ public class MenuModel implements Serializable {
     @Column(name="is_available", nullable = false)
     private Boolean isAvailable;
 
+    @NotNull
+    @Size(max=50)
+    @Column(nullable = false)
+    private String deskripsiMenu;
+
+    //Relasi dengan CabangModel
     @ManyToMany(mappedBy = "listMenu")
     List<CabangModel> listCabang;
 }
-
