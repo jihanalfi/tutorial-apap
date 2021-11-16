@@ -10,6 +10,9 @@ public interface CabangRestService {
     CabangModel createCabang(CabangModel cabang);
     List<CabangModel> retrieveListCabang();
     CabangModel getCabangByNoCabang(Long noCabang);
+
+    List<CabangModel> getCabangByNoTelpCabang(String noTelp);
+
     CabangModel updateCabang(Long noCabang, CabangModel cabangUpdate);
     void deleteCabang(Long noCabang);
     Mono<String> getStatus(Long noCabang);

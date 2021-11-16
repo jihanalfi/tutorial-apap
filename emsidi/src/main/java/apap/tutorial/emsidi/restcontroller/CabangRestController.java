@@ -45,6 +45,17 @@ public class CabangRestController {
         }
     }
 
+    @GetMapping(value = "/cabang/noTelepon/{notelp}")
+    private List<CabangModel> retrieveCabangByNoTelp(@PathVariable("notelp") String notelp){
+        try{
+            return cabangRestService.getCabangByNoTelpCabang(notelp);
+        } catch (NoSuchElementException e){
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "Nomor Telepon Cabang " + notelp + " Not Found."
+            );
+        }
+    }
+
     @DeleteMapping(value = "/cabang/{noCabang}")
     private ResponseEntity deleteCabang(@PathVariable("noCabang") Long noCabang){
         try{

@@ -66,6 +66,11 @@ public class CabangRestServiceImpl implements CabangRestService{
     }
 
     @Override
+    public List<CabangModel> getCabangByNoTelpCabang(String noTelp){
+        return cabangDb.findAllByNoTeleponCabang(noTelp);
+    }
+
+    @Override
     public CabangModel updateCabang(Long noCabang, CabangModel cabangUpdate) {
         CabangModel cabang=getCabangByNoCabang(noCabang);
         cabang.setNamaCabang(cabangUpdate.getNamaCabang());
