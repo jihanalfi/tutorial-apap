@@ -3,8 +3,10 @@ package apap.tutorial.emsidi.controller;
 import apap.tutorial.emsidi.model.CabangModel;
 import apap.tutorial.emsidi.model.MenuModel;
 import apap.tutorial.emsidi.model.PegawaiModel;
+import apap.tutorial.emsidi.model.UserModel;
 import apap.tutorial.emsidi.service.CabangService;
 import apap.tutorial.emsidi.service.MenuService;
+import apap.tutorial.emsidi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,14 +33,22 @@ public class CabangController {
     @Autowired
     MenuService menuService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping(value="/cabang/add")
-    public String addCabangForm(Model model) {
+    public String addCabangForm(
+            HttpServletRequest request,
+            Model model) {
         counter = 1;
         List<MenuModel> listAllMenu = menuService.getListMenu();
+        Principal principal = request.getUserPrincipal();
+        UserModel user = userService.getUser(principal.getName());
 
         model.addAttribute("listAllMenu", listAllMenu);
         model.addAttribute("counter", counter);
         model.addAttribute("cabang", new CabangModel());
+        model.addAttribute("role", user.getRole().getRole());
         return "form-add-cabang";
     }
 

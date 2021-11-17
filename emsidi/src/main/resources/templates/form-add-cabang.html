@@ -39,10 +39,10 @@
                     <input required class="form-control" type="time" name="waktuTutup" th:value="*{waktuTutup}"/>
                     <br><br>
 
-                    <table class="table" id="tableMenu">
+                    <table class="table" id="tableMenu" th:if="${role == 'Manajer'}">
                         <thead>
                         <th>Nama Menu</th>
-                        <th>
+                        <th >
                             <input class="btn btn-primary" type="submit" name="addRow" value ="Add Row">
                         </th>
                         </thead>
