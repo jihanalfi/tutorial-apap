@@ -113,6 +113,11 @@ public class UserController {
             model.addAttribute("message", "Password lama tidak cocok, mohon input ulang");
             return "update-password";
         }
+
+        if (newPassword.equals(oldPassword)){
+            model.addAttribute("message", "Password baru tidak boleh sama dengan password lama");
+            return "update-password";
+        }
         return "update-password";
     }
 }
