@@ -2,6 +2,23 @@
 ## Authors
 * **Jihan Alfiyyah Munajat** - *1906298935* - *A*
 ---
+## Tutorial 6
+### What I have learned today
+> Mulai bisa mengerti Otentikasi dan Otorisasi pada website dengan libraru-library yang sudah disediakan. Hari ini juga saya menemukan beberapa masalah yang debugnya membutuhkan waktu sektiar 2 -3 jam. 
+1. Jelaskan secara singkat perbedaan Otentikasi dan Otorisasi! Di bagian mana (dalam kode yang telah anda buat) konsep tersebut diimplementasi?
+> Otentikasi merupakan aturan yang digunakan untuk mengecek apakah credential dari user valid atau tidak. Otentikasi akan mengecek username dan password yang di-input user ada (valid) atau tidak ada (tidak valid) di dalam users / credentials storage. Otentikasi diperlukan untuk mem-verifikasi bahwa pengguna mempunyai akses untuk masuk ke dalam sistem. Konsep otentikasi dalam kode yang telah saya buat diimplementasi pada class `WebSecurityConfig` bagian `.anyRequest().authenticated()` dan method `configAuthentication`.
+> Sedangkan, otorisasi merupakan aturan yang digunakan untuk mengecek hak user berdasarkan role-nya. Hak yang dimaksud di sini adalah fungsi / fitur apa saja yang dapat dijalankan / diakses user. User harus telah lolos uji otentikasi terlebih dahulu untuk dapat diuji otorisasinya. Konsep otorisasi dalam kode yang telah saya buat diimplementasi pada class `UserDetailsServiceImpl` dan juga pada class `WebSecurityConfig` bagian `.antMatchers("/menu/add/**").hasAnyAuthority("Manajer")` dan `.antMatchers("/user/delete/**").hasAnyAuthority("Admin")`
+
+2. Apa itu BCryptPasswordEncoder? Jelaskan secara singkat cara kerja dan tujuannya.
+> Spring Security menyediakan BCryptPasswordEncoder untuk untuk menyandikan (encode) password. Class yang merupakan implementasi dari PasswordEncoder ini menggunakan fungsi hashing (algoritma) BCript yang kuat. Credentials user baru disimpan dan password akan dienkripsi menggunakan `BCryptPasswordEncoder` sehingga pada database tersimpan password yang telah dienkripsi secara otomatis.
+3. Apakah penyimpanan password sebaiknya menggunakan encryption atau hashing? Mengapa demikian?
+> Hashing atau encryption sebenarnya keduanya digunakan agar menghindari kebobolan keamanan pada akun yang terdaftar. Kedua proses ini dibedakan dari tekniknya, dimana encryption merupakan proses 2 arah enkripsi yang dapat di encode dan decode melalui matching keys, sedangkan hashing merupakan teknik enkripsi 1 arah. Maka dari itu, untuk menyimpan password sebaiknya menggunakan hashing karena kemungkinan didecodenya lebih kecil, bahkan impossible.
+4. Jelaskan secara singkat apa itu UUID beserta penggunaannya!
+>UUID (Universally Unique Identifier) merepresentasikan suatu nilai `Long` 128-bit yang unik untuk segala tujuan praktis yang di-generate secara random oleh sistem. Standardnya, representasi UUID menggunakan digit hex (oktet). Ini digunakan untuk mengidentifikasi informasi yang harus unik dalam suatu sistem. Penggunaan UUID pada tutorial kali ini terdapat pada id user dalam UserModel.
+5. Apa kegunaan class UserDetailsServiceImpl.java? Mengapa harus ada class tersebut padahal kita sudah memiliki class UserRoleServiceImpl.java?
+> Class `UserDetailsServiceImpl` dapat memuat user's credentials termasuk username, password, dan role yang dapat memudahkan untuk proses Otorisasi. Class ini juga difokuskan untuk menentukan hak-hak yang dimiliki user, termasuk role yang dimilikinya.
+
+---
 ## Tutorial 5
 ### What I have learned today
 > Mengetahui bagaimana penggunaan API dalam webservice, tapi masih agak bingung karna banyak yang harus di explore seperti syntax-syntax dari springboot yang baru digunakan.
