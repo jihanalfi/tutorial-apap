@@ -2,6 +2,34 @@
 ## Authors
 * **Jihan Alfiyyah Munajat** - *1906298935* - *A*
 ---
+## Tutorial 7
+### What have I learned today
+1. Jelaskan apa yang Anda lakukan di latihan dalam satu paragraf per-soal. Berikan screenshot
+   sebagai ilustrasi dari apa yang Anda jelaskan.
+> Untuk soal pertama terkait pembuatan fungsi delete item dari cart dengan hanya mengklik tombol delete (tempat sampah)
+> yang didapatkan dari halaman tampilan keranjang pembelian. Saya membuat method handleDeleteItemInCart pada home dengan cara
+> mengakses list cartitems, lalu memfilter list tersebut dengan item yang dipilih dan menyimpannya ke dalam variabel baru. 
+> Setelah itu, list yang baru saya simpan ke state cart items. Berikut adalah codingannya
+> <img src="https://ibb.co/vc2d4Kg"/> <br>
+> Untuk nomor 2 dan 3, saya mengubah di method handleAddItemToCart dengan membuat kondisi (if-else) didalamnya. Ketika kondisinya
+> current balance dikurangi dengan harga barang yang dipilih menghasilkan negatif yang menandakan bahwa balance tidak cukup untuk memilih
+> barang tersebut, saya akan menampilkan alert dan tidak mengeksekusi adanya penambahan item pada cart item. Ketika balance dinyatakan
+> cukup, baru proses dieksekusi, juga dengan mengurangi balance yang dimiliki. Berikut adalah codingannya
+><img src="https://ibb.co/r5d0Mrd"/> 
+2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
+> State merupakan sebuah data yang private dari suatu komponen, sehingga tidak dapat diakses secara langsung apabila
+> dipanggil dari komponen lain. Tetapi, state ini selalu berubah seiring berjalannya waktu. Adapun props sendiri merupakan 
+> singkatan dari *properties* yang menyimpan argumen yang pertamakali diinput.
+3. Menurut kamu, apakah sebaiknya kita menggunakan component (e.g. List, Item) dalam React? sebutkan alasannya.
+> Ya perlu, hal ini membantu kita untuk mengimplementasikan object dalam web sehingga komponen yang memiliki logic-nya sendiri 
+> akan tetap konsisten ketika kita menggunakannya dimanapun. 
+4. Apa perbedaan class component dan functional component?
+> Functional component merupakan merender UI berdasarkan argument (props) yang diterima pertama kali, dan mereturn element. 
+> Sedangkan class component merupakan ekstensi dari komponen yang diterima, seperti pengaturan state yang diterapkan pada web.
+5. Dalam react, apakah perbedaan component dan element?
+> Element merupakan hal yang dikembalikan (return) dari komponen, sedangkan component dalam react bisa merupakan function/class 
+
+---
 ## Tutorial 6
 ### What I have learned today
 > Mulai bisa mengerti Otentikasi dan Otorisasi pada website dengan libraru-library yang sudah disediakan. Hari ini juga saya menemukan beberapa masalah yang debugnya membutuhkan waktu sektiar 2 -3 jam. 
