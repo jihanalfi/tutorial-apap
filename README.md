@@ -9,13 +9,6 @@ Saya lagi mencoba untuk belajar pasrah :D
 ### Pertanyaan
 #### 1. Ceritakan langkah - langkah yang kalian lakukan untuk solve LATIHAN no.1, dan mengapa kalian melakukan langkah - langkah tersebut?
 > Untuk memecahkan soal latihan no. 1, saya cukup mengatur state (`setState`) namaDokter, namaPasien, dan catatan menjadi string kosong setelah data add resep yang di-input sebelumnya berhasil di load. Di bawah ini saya lampirkan potongan kodenya. Hal ini saya lakukan agar text field pada form add resep menjadi kosong setiap kali pengguna ingin menambahkan resep baru.
-```javascript
-this.setState({
-  namaDokter: "",
-  namaPasien: "",
-  catatan: "",
-});
-```
 
 #### 2. Jelaskan fungsi dari async dan await!
 > `async`/`await` merupakan sebuah syntax khusus yang digunakan untuk bekerja dengan Promise agar lebih nyaman dan mudah untuk digunakan. `async` digunakan untuk mengubah function menjadi asynchronous (bersifat non-blocking). Fungsi `async` akan mengembalikan sebuah Promise. Sedangkan, `await` merupakan fungsi yang hanya berjalan di dalam `async`. `await` berfungsi untuk menunda sebuah kode dijalankan sampai proses `async` berhasil. `await` juga akan mengembalikan Promise, namun kode yang pada fungsi `await` ini baru dapat dijalankan ketika Promise sudah resolved.
@@ -37,12 +30,12 @@ this.setState({
 > yang didapatkan dari halaman tampilan keranjang pembelian. Saya membuat method handleDeleteItemInCart pada home dengan cara
 > mengakses list cartitems, lalu memfilter list tersebut dengan item yang dipilih dan menyimpannya ke dalam variabel baru. 
 > Setelah itu, list yang baru saya simpan ke state cart items. Berikut adalah codingannya
-> <img src="https://ibb.co/vc2d4Kg"></img> <br>
+<img src="https://ibb.co/vc2d4Kg"></img> <br>
 > Untuk nomor 2 dan 3, saya mengubah di method handleAddItemToCart dengan membuat kondisi (if-else) didalamnya. Ketika kondisinya
 > current balance dikurangi dengan harga barang yang dipilih menghasilkan negatif yang menandakan bahwa balance tidak cukup untuk memilih
 > barang tersebut, saya akan menampilkan alert dan tidak mengeksekusi adanya penambahan item pada cart item. Ketika balance dinyatakan
 > cukup, baru proses dieksekusi, juga dengan mengurangi balance yang dimiliki. Berikut adalah codingannya
-><img src="https://ibb.co/r5d0Mrd"/></img>
+<img src="https://ibb.co/r5d0Mrd"/></img>
 2. Menurut pemahaman kamu selama pengerjaan tutorial ini, apa perbedaan antara state dan props?
 > State merupakan sebuah data yang private dari suatu komponen, sehingga tidak dapat diakses secara langsung apabila
 > dipanggil dari komponen lain. Tetapi, state ini selalu berubah seiring berjalannya waktu. Adapun props sendiri merupakan 
